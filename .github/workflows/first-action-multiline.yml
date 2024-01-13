@@ -1,0 +1,10 @@
+name: First Action Multiline
+on: workflow_dispatch
+jobs:
+  first-action-multiline:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Print something'
+        run: |
+          echo 'Hello World!'
+          echo 'And now bye!'
