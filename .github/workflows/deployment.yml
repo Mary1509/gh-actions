@@ -1,6 +1,19 @@
-name: Test Project
+name: Deploy Code Source
 on: [push, workflow_dispatch]
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Install NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install dependencies
+        run: npm ci
+      - name: Lint
+        run: eslint --ext .jsx --fix src
   test:
     runs-on: ubuntu-latest
     steps:
@@ -13,7 +26,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Run tests
-        run: npm test
+        run: vitest run
   deploy:
     needs: 
       test
@@ -28,6 +41,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Buid Project
-        run: npm run build
+        run: vite build
       - name: Deploy
         run: echo 'Deployig...'
