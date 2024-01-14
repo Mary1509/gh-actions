@@ -57,7 +57,7 @@ jobs:
         run: npm run build
       - name: Publish js filename # id is required
         id: publish
-        run: find dist/assets/*.js -type f -ecdir echo 'script={}' >> $GITHUB_OUTOUT ';' # or ::set-ouput (legacy)
+        run: find dist/assets/*.js -type f -execdir echo 'script={}' >> $GITHUB_OUTPUT ';' # or ::set-ouput (legacy)
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
