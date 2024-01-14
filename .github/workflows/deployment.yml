@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+      - triggers
 jobs:
   lint:
     runs-on: ubuntu-latest
@@ -52,6 +53,13 @@ jobs:
         run: npm ci
       - name: Buid Project
         run: npm run build
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist-files
+          path: |
+            dist
+            package.json
   deploy:
     needs: 
       build
