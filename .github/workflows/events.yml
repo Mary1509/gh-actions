@@ -1,0 +1,38 @@
+name: Triggers test
+on: 
+  pull_request:
+    types:
+      - opened
+    branches:
+      - main
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - triggers
+    paths-ignore:
+      - '.github/workflows/*'
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Output event data
+        run: echo "${{ toJSON(github.event) }}"
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          ref: '${{ github.ref }}'
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          ref: '${{ github.ref }}'
+      - name: Install NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install dependencies
+        run: npm ci
+      - name: Build
+        run: npm run build
+      - name: Deploy
+        run: echo 'Deployig...'
