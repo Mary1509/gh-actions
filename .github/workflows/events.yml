@@ -1,4 +1,4 @@
-name: Issues details
+name: Triggers test
 on: 
   pull_request:
     types:
