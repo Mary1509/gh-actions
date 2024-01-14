@@ -1,17 +1,17 @@
 name: Triggers test
 on: 
-  pull_request:
-    types:
-      - opened
-    branches:
-      - main
+  # pull_request:
+  #   types:
+  #     - opened
+  #   branches:
+  #     - main
   workflow_dispatch:
-  push:
-    branches:
-      - main
-      - triggers
-    paths-ignore:
-      - '.github/workflows/*'
+  # push:
+  #   branches:
+  #     - main
+  #     - triggers
+  #   paths-ignore:
+  #     - '.github/workflows/*'
 jobs:
   deploy:
     runs-on: ubuntu-latest
